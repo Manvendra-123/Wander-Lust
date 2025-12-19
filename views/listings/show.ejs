@@ -1,0 +1,60 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-4">
+
+  <div class="card border-0 shadow-sm">
+
+    <!-- 🔥 LARGE IMAGE (Hero Image) -->
+    <img 
+      src="<%= listing.image %>" 
+      class="card-img-top show-img"
+      alt="listing image"
+    />
+
+    <div class="card-body p-4">
+
+      <!-- Title -->
+      <h2 class="fw-semibold mb-1"><%= listing.title %></h2>
+
+      <!-- Location -->
+      <p class="text-muted mb-3">
+        <%= listing.location %>, <%= listing.country %>
+      </p>
+
+      <!-- Price -->
+      <p class="fs-5 fw-medium">
+        ₹ <%= listing.price.toLocaleString("en-IN") %> / night
+      </p>
+
+      <hr />
+
+      <!-- Description -->
+      <p>
+        <%= listing.description || "No description available." %>
+      </p>
+
+      <!-- Buttons -->
+      <div class="d-flex gap-2 mt-4">
+        <a 
+          href="/listings/<%= listing._id %>/edit" 
+          class="btn btn-outline-primary"
+        >
+          Edit
+        </a>
+
+        <form 
+          method="POST" 
+          action="/listings/<%= listing._id %>?_method=DELETE"
+        >
+          <button class="btn btn-outline-danger">
+            Delete
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
