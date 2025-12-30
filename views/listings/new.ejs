@@ -1,30 +1,37 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      
       <div class="card shadow-lg">
         <div class="card-body">
           <h3 class="card-title text-center mb-4">Create a New Listing</h3>
 
-          <form method="POST" action="/listings">
-
+          <form
+            method="POST"
+            action="/listings"
+            class="needs-validation"
+            novalidate
+            enctype="multipart/form-data"
+          >
             <div class="mb-3">
-              <label class="form-label">Title</label>
-              <input 
-                name="listing[title]" 
+              <label class="form-label" for="title">Title</label>
+              <input
+                name="listing[title]"
+                id="title"
                 class="form-control"
                 placeholder="Enter title"
-                type="text" 
+                type="text"
                 required
               />
+              <div class="valid-feedback">Title looks good!</div>
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Description</label>
-              <textarea 
-                name="listing[description]" 
+              <label class="form-label" for="description">Description</label>
+              <textarea
+                name="listing[description]"
+                id="description"
                 class="form-control"
                 rows="3"
                 placeholder="Enter description"
@@ -33,30 +40,34 @@
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Image URL</label>
-              <input 
-                name="listing[image]" 
+              <label class="form-label" for="image ">Upload Image</label>
+              <input
+                name="listing[image]"
+                id="image"
                 class="form-control"
                 placeholder="Enter image URL"
-                type="text" 
+                type="file"
               />
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Price (₹)</label>
-              <input 
-                name="listing[price]" 
+              <label class="form-label" for="price">Price (₹)</label>
+              <input
+                name="listing[price]"
+                id="price"
                 class="form-control"
                 placeholder="Enter price"
-                type="number"
                 required
+                min="0"
               />
+            <div class="invalid-feedback">Please Enter a valid Price</div>
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Country</label>
-              <input 
-                name="listing[country]" 
+              <label class="form-label" for="country">Country</label>
+              <input
+                name="listing[country]"
+                id="country"
                 class="form-control"
                 placeholder="Enter country"
                 type="text"
@@ -65,9 +76,10 @@
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Location</label>
-              <input 
-                name="listing[location]" 
+              <label class="form-label" for="location">Location</label>
+              <input
+                name="listing[location]"
+                id="location"
                 class="form-control"
                 placeholder="Enter location"
                 type="text"
@@ -76,15 +88,12 @@
             </div>
 
             <div class="d-grid">
-              <button class="btn btn-primary btn-lg">
-                Add Listing
-              </button>
+              <button class="btn btn-primary btn-lg">Add Listing</button>
             </div>
-
           </form>
         </div>
       </div>
-
     </div>
   </div>
 </div>
+

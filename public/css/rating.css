@@ -1,0 +1,23 @@
+.gl-star-rating select {
+    display: none;
+  }
+
+  .gl-star-rating--stars span {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+
+  .gl-star-rating--stars span.active,
+  .gl-star-rating--stars span.hover {
+    color: gold;
+  }
+   .review-stars .star {
+    color: #ccc;
+    font-size: 1.2rem;
+  }
+
+  .review-stars .star.filled {
+    color: gold;
+  }

@@ -1,35 +1,133 @@
 <% layout("layouts/boilerplate") %>
 
-<div class="container mt-4">
-  <div class="row g-4">
+<style>
+  #filters {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    gap: 0.25rem;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    opacity: 0.7;
+  }
+  .filter p {
+    font-size: 0.8rem;
+  }
+  .toggle-btn {
+    margin-left: auto;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    padding: 0.3rem 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .filter:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+  .tax-info {
+    font-family: italic;
+    display: none;
+  }
+  
+</style>
+<div class="container">
+  <div id="filters">
+    <div class="filter">
+      <i class="fa-solid fa-fire"></i>
+      <p>Trending</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-bed"></i>
+      <p>Rooms</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-mountain-city"></i>
+      <p>Iconic Cities</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-mountain"></i>
+      <p>Moutains</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-person-swimming"></i>
+      <p>Amazing Pool</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-campground"></i>
+      <p>Camping</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-tractor"></i>
+      <p>Farms</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-sailboat"></i>
+      <p>Boat</p>
+    </div>
+    <div class="toggle-btn">
+      <div class="form-check form-switch form-check-reverse">
+        <input
+          class="form-check-input "
+          type="checkbox"
+          role="switch"
+          id="switchCheckDefault"
+        />
+        <label class="form-check-label" for="switchCheckDefault"
+          >Display total after taxes</label
+        >
+      </div>
+    </div>
+  </div>
+  <div class="row g-4">
     <% for (let listing of allListings) { %>
 
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <a 
-          href="/listings/<%= listing._id %>" 
-          class="text-decoration-none text-dark"
-        >
-          <div class="card listing-card border-0">
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <a
+        href="/listings/<%= listing._id %>"
+        class="text-decoration-none text-dark"
+      >
+        <div class="card listing-card border-0">
+          <img
+            src="<%= listing.image.url %>"
+            class="listing-img"
+            alt="listing image"
+          />
 
-            <img 
-              src="<%= listing.image %>" 
-              class="listing-img" 
-              alt="listing image"
-            />
-
-            <div class="card-body p-2">
-              <p class="mb-1 fw-semibold"><%= listing.title %></p>
-              <p class="mb-0 text-muted">
-                ₹ <%= listing.price.toLocaleString("en-IN") %> / night
-              </p>
-            </div>
-
+          <div class="card-body p-2">
+            <p class="mb-1 fw-semibold"><%= listing.title %></p>
+            <p class="mb-0 text-muted">
+              ₹ <%= listing.price.toLocaleString("en-IN") %> / night
+              <i class="tax-info">&nbsp;+18% GST</i>
+            </p>
           </div>
-        </a>
-      </div>
+        </div>
+      </a>
+    </div>
 
     <% } %>
-
   </div>
 </div>
+
+<script>
+  let taxSwitch = document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("click", () => {
+    let taxInfos = document.getElementsByClassName("tax-info");
+    for(let info of taxInfos){
+      if(info.style.display !== "inline"){
+        info.style.display = "inline";
+      }
+      else {
+        info.style.display = "none";
+      }
+    }
+  });
+</script>

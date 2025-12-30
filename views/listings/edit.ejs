@@ -1,66 +1,70 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-
       <div class="card shadow-lg">
         <div class="card-body">
           <h3 class="card-title text-center mb-4">Edit Your Listing</h3>
 
-          <form 
-            method="POST" 
-            action="/listings/<%= listing._id %>?_method=PUT"
+          <form
+            method="POST"
+            action="/listings/<%= listing._id %>?_method=PATCH"
+            class="needs-validation"
+            novalidate
+            enctype="multipart/form-data"
           >
-
             <div class="mb-3">
               <label class="form-label">Title</label>
-              <input 
-                name="listing[title]" 
-                value="<%= listing.title %>" 
+              <input
+                name="listing[title]"
+                value="<%= listing.title %>"
                 class="form-control"
                 type="text"
                 required
               />
+              <div class="valid-feedback">Title looks good!</div>
             </div>
 
             <div class="mb-3">
               <label class="form-label">Description</label>
-              <textarea 
-                name="listing[description]" 
+              <textarea
+                name="listing[description]"
                 class="form-control"
                 rows="3"
                 required
-              ><%= listing.description %></textarea>
+              >
+<%= listing.description %></textarea
+              >
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Image URL</label>
-              <input 
-                name="listing[image]" 
-                value="<%= listing.image %>" 
+              <label class="form-label">Upload Image</label>
+              <input
+                name="listing[image]"
                 class="form-control"
-                type="text"
+                type="file"
+                required;
               />
             </div>
 
             <!-- Image Preview -->
-            <% if (listing.image) { %>
-              <div class="mb-3 text-center">
-                <img 
-                  src="<%= listing.image %>" 
-                  alt="Listing Image" 
-                  class="img-fluid rounded"
-                  style="max-height: 200px;"
-                />
-              </div>
+            <% if (listing.image.url) { %>
+            <div class="mb-3 text-center">
+              <img
+                src="<%= listing.image.url %>"
+                alt="Listing Image"
+                class="img-fluid rounded"
+                style="max-height: 200px"
+              />
+            </div>
             <% } %>
 
             <div class="mb-3">
               <label class="form-label">Price (₹)</label>
-              <input 
-                name="listing[price]" 
-                value="<%= listing.price %>" 
+              <input
+                name="listing[price]"
+                value="<%= listing.price %>"
                 class="form-control"
                 type="number"
                 required
@@ -69,9 +73,9 @@
 
             <div class="mb-3">
               <label class="form-label">Country</label>
-              <input 
-                name="listing[country]" 
-                value="<%= listing.country %>" 
+              <input
+                name="listing[country]"
+                value="<%= listing.country %>"
                 class="form-control"
                 type="text"
                 required
@@ -80,9 +84,9 @@
 
             <div class="mb-3">
               <label class="form-label">Location</label>
-              <input 
-                name="listing[location]" 
-                value="<%= listing.location %>" 
+              <input
+                name="listing[location]"
+                value="<%= listing.location %>"
                 class="form-control"
                 type="text"
                 required
@@ -90,21 +94,17 @@
             </div>
 
             <div class="d-grid gap-2">
-              <button class="btn btn-warning btn-lg">
-                Update Listing
-              </button>
-              <a 
-                href="/listings/<%= listing._id %>" 
+              <button class="btn btn-warning btn-lg">Update Listing</button>
+              <a
+                href="/listings/<%= listing._id %>"
                 class="btn btn-outline-secondary"
               >
                 Cancel
               </a>
             </div>
-
           </form>
         </div>
       </div>
-
     </div>
   </div>
 </div>

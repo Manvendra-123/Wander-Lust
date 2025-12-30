@@ -1,3 +1,10 @@
+/* Reset (recommended) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 /* Navbar */
 .navbar {
     height: 5rem;
@@ -75,3 +82,13 @@
   object-fit: cover;
   border-radius: 1rem;
 }
+
+
+/* Page layout */
+.page-layout {
+  min-height: 100vh;       
+  display: flex;              
+  flex-direction: column;     
+}
+
+
